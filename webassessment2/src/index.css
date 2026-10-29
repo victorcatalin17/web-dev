@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Teko&display=swap');
+:root {
+  --space-small: 16px;
+  --space-large: 16px;
+  --color-text: #070410;
+  --color-bg: #231651;
+  --color-accent: #4DCCBD;
+  --color-surface: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+h1,h2, button {
+  font-family: "Teko", sans-serif;
+}
+
+/* HEADER - mobile */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-small);
+  padding: var(--space-small);
+  background-color: var(--color-surface);
+  border-bottom: 4px solid var(--color-text);
+}
+
+.logo {
+  margin: 0;
+  font-size: 2em;
+}
+
+.menu {
+  display: none;
+}
+
+.menu a {
+  color: var(--color-text);
+  text-decoration: none;
+  margin-right: var(--space-large);
+}
+
+.button {
+  font-size: 2em;
+  padding: var(--space-small);
+  border-radius: var(--space-small);
+  border: 1px solid var(--color-text);
+  background-color: var(--color-accent);
+  cursor: pointer;
+}
+
+/* TABLET */
+@media (min-width: 720px) {
+  :root { --space-large: 32px; }
+  .logo { font-size: 3em; }
+  .menu { display: block; }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  :root { --space-large: 48px; }
+}
+/* MAIN CONTAINER */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-large);
+}
+
+/* MOVIE CARD - mobile */
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-text);
+  box-shadow: 8px 8px 0 var(--color-text);
+}
+
+.card img {
+  display: block;
+  width: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-small);
+  padding: var(--space-small);
+  flex-grow: 1;
+}
+
+.card-text {
+  font-size: 1.5em;
+  flex-grow: 1;
+}
+
+.card-text h2,
+.card-text p {
+  margin: 0;
+}
+/* TABLET */
+@media (min-width: 720px) {
+  :root { --space-large: 32px; }
+
+  .logo { font-size: 3em; }
+  .menu { display: block; }
+
+  /* cards in 2 columns */
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* square images */
+  .card img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  :root { --space-large: 48px; }
+
+  /* menu centred between logo and SEARCH */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .header .button {
+    justify-self: end;
+  }
+
+  /* card 1: wide, text on the left, button on the right */
+  .card:nth-child(1) {
+    grid-column: 1 / -1;
+  }
+  .card:nth-child(1) img {
+    aspect-ratio: 3 / 1;
+  }
+  .card:nth-child(1) .card-body {
+    flex-direction: row;
+  }
+  .card:nth-child(1) .button {
+    width: 200px;
+  }
+
+  /* cards 4 and up: wide, image left, text right */
+  .card:nth-child(n+4) {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+  .card:nth-child(n+4) img {
+    width: 50%;
+  }
+}
